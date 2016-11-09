@@ -10,7 +10,7 @@
                 {title: 'third page', id: 3}
             ];
         })
-        .controller('bookListCtrl', function($scope, $ionicListDelegate) {
+        .controller('bookListCtrl', function($scope) {
             $scope.bookList = [
                 { title: 'A book', price: '$ 20'},
                 { title: 'B book', price: '$ 20'},
@@ -28,13 +28,23 @@
             ];
 
             $scope.options = {
-                isShowDeleteButtons: false
+                isShowDeleteButtons: false,
+                isShowReorderButtons: false
             };
 
             $scope.showDeleteButtons = function() {
-                console.log('Trigger ShowDeleteButtons');
+                this.options.isShowReorderButtons = false;
                 this.options.isShowDeleteButtons = !this.options.isShowDeleteButtons;
-                $ionicListDelegate.showDelete(this.options.isShowDeleteButtons);
+            };
+
+            $scope.showReorderButtons = function() {
+                this.options.isShowDeleteButtons = false;
+                this.options.isShowReorderButtons = !this.options.isShowReorderButtons;
+            };
+
+            $scope.moveItem = function(item, fromIndex, toIndex) {
+                $scope.bookList.splice(fromIndex, 1);
+                $scope.bookList.splice(toIndex, 0, item);
             };
 
             $scope.onItemDelete = function(book) {
