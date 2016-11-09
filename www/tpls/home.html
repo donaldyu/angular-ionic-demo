@@ -1,0 +1,35 @@
+<!-- 首页 -->
+<ion-side-menus>
+
+    <!-- 中部区域 -->
+    <ion-pane ion-side-menu-content ng-controller="navMenuCtrl">
+        <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+            <ion-nav-buttons side="left">
+                <button menu-toggle="left" class="button icon ion-navicon"></button>
+            </ion-nav-buttons>
+            <ion-nav-title>Home</ion-nav-title>
+        </ion-nav-bar>
+        <ion-nav-view animation="slide-left-right" style="margin-top: 50px;">
+            <ion-view view-title="">
+                <ion-tabs>
+                    <ion-tab>
+                        <ion-content>
+                            <ion-list>
+                                <ion-item ng-repeat="nav in navList" href="#/home/pages/{{ nav.id }}" ui-sref="pages({id: nav.id})">
+                                    {{ nav.title }}
+                                </ion-item>
+                            </ion-list>
+                        </ion-content>
+                    </ion-tab>
+                </ion-tabs>
+            </ion-view>
+        </ion-nav-view>
+    </ion-pane>
+
+    <!-- 左侧菜单 -->
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-dark">
+            <h1 class="title">Projects</h1>
+        </ion-header-bar>
+    </ion-side-menu>
+</ion-side-menus>
